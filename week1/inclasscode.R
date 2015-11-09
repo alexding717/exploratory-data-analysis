@@ -1,3 +1,5 @@
+# The codes that I found is useful in the material of week1
+
 # multiple historgrams
 par(mfrow = c(2, 1), mar = c(4, 4, 2, 1))
 hist(subset(pollution, region == "east")$pm25, col = "green") # use subset function
