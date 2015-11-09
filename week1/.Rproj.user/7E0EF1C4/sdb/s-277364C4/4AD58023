@@ -1,0 +1,18 @@
+{
+    "contents" : "# This is the R script for plot3\n\n# Load the data, the file should be under the current working directory\nelectricData <- read.table(\"household_power_consumption.txt\", header = T, sep = \";\",\n                           na.strings = \"?\", colClasses = c(rep(\"character\", 2), rep(\"numeric\", 7)))\n\n# Convert the column Date to Date class\nelectricData$Date <- as.Date(electricData$Date, \"%d/%m/%Y\")\n\n# Subset the data of two days needed\nelectricData2D <- subset(electricData, Date == \"2007-02-01\" | Date == \"2007-02-02\")\n\n# Combine the date and time, and store to the column Time as POSIXlt class\nelectricData2D$Time <- strptime(paste(electricData2D$Date, electricData2D$Time), \n                                format = \"%Y-%m-%d %H:%M:%S\")\n\n# Plot the graph\npng(file = \"plot3.png\")\nwith(electricData2D,{\n    plot(Time, Sub_metering_1, type = \"l\", col = \"black\", xlab = \"\",\n         ylab = \"Energy sub metering\")\n    lines(Time, Sub_metering_2, col = \"red\")\n    lines(Time, Sub_metering_3, col = \"blue\")\n    legend(\"topright\", col = c(\"black\", \"red\", \"blue\"), lty = 1,\n           legend = c(\"Sub_metering_1\", \"Sub_metering_2\", \"Sub_metering_3\"))\n})\ndev.off()",
+    "created" : 1447032408072.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "291881718",
+    "id" : "4AD58023",
+    "lastKnownWriteTime" : 1447032643,
+    "path" : "~/Coursera/exploratory-data-analysis/week1/ExData_Plotting1/plot3.R",
+    "project_path" : "ExData_Plotting1/plot3.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 5,
+    "source_on_save" : false,
+    "type" : "r_source"
+}
